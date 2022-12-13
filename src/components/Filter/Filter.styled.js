@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const LabelFilter = styled.label`
-  display: flex;
-  flex-direction: column;
+  display: block;
+
   text-align: center;
   margin-bottom: 30px;
 `;
@@ -22,6 +22,8 @@ export const InputFilter = styled.input`
   }
 `;
 export const TextFilter = styled.p`
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
 `;

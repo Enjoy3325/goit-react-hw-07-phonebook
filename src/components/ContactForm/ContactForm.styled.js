@@ -27,8 +27,10 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 export const TextForm = styled.p`
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
 `;
 export const ButtonForm = styled.button`
   margin-left: 20px;
@@ -37,6 +39,7 @@ export const ButtonForm = styled.button`
   font-size: 18px;
   align-items: center;
   font-weight: 700;
+  margin: 0 auto;
   background-color: #123c23;
   color: white;
   border-radius: 40px;

@@ -1,6 +1,6 @@
 import { getFilter, getContacts } from 'redux/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/slice/contactsSlice';
+import { fetchDeleteContacts } from 'redux/operations';
 import { BoxList } from './ListContacts.styled';
 import { nanoid } from 'nanoid';
 import { CardContact } from '../CardContact/CardContact';
@@ -10,9 +10,10 @@ export const ListContacts = () => {
   const dispatch = useDispatch();
   const filterValue = useSelector(getFilter);
   const contacts = useSelector(getContacts);
+  console.log('filterValue :>> ', filterValue);
 
   const handlDeleteContacts = id => {
-    dispatch(deleteContacts(id));
+    dispatch(fetchDeleteContacts(id));
   };
 
   return (

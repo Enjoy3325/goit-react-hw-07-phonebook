@@ -1,3 +1,4 @@
+import { fetchAddNewContact } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
@@ -48,7 +49,7 @@ export const ContactForm = () => {
   };
   return (
     <SectionForm>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={fetchAddNewContact}>
         <LabelForm>
           <TextForm>Name</TextForm>
           <Input
