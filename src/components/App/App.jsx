@@ -8,10 +8,12 @@ import { Filter } from '../Filter/Filter';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { useEffect } from 'react';
 import { Wrapper } from './App.styled';
+import { ProgressBar } from 'react-loader-spinner';
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isLoading, status, error } = useSelector(state => state.contacts);
+  const { error, status } = useSelector(state => state.contacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -20,9 +22,8 @@ export const App = () => {
     <Wrapper>
       <div>
         <h1>Phonebook </h1>
-        {isLoading === status && <h2>Loaging...</h2>}
-        {error && <h2>An error occured {error}</h2>}
-        <ContactForm />
+        {status === 'loading' ? <ProgressBar /> : ''}
+        {error ? <h2>An error occured: {error}</h2> : <ContactForm />}
       </div>
 
       <section>
