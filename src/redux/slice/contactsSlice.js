@@ -12,7 +12,7 @@ const setPending = state => {
 
 const setfulfilled = (state, { payload }) => {
   state.status = 'resolved';
-  state.contacts = payload;
+  state.items = payload;
 };
 
 const setError = (state, { payload }) => {
@@ -29,16 +29,6 @@ const contactsSlice = createSlice({
     filter: '',
   },
   reducers: {
-    addContacts(state, action) {
-      state.contacts.push(action.payload);
-    },
-
-    deleteContacts(state, action) {
-      state.contacts = state.contacts.filter(
-        contact => contact.id !== action.payload.id
-      );
-    },
-
     chengeFilter(state, action) {
       state.filter = action.payload;
     },
@@ -48,14 +38,21 @@ const contactsSlice = createSlice({
     builder.addCase(fetchContacts.fulfilled, setfulfilled);
     builder.addCase(fetchContacts.rejected, setError);
 
+    builder.addCase(fetchDeleteContacts.pending, setPending);
+    builder.addCase(fetchDeleteContacts.fulfilled, (state, { payload }) => {
+      state.status = 'resolved';
+      state.items = state.items.filter(contact => {
+        return contact.id !== payload.id;
+      });
+    });
     builder.addCase(fetchDeleteContacts.rejected, setError);
 
     builder.addCase(fetchAddNewContact.pending, setPending);
     builder.addCase(fetchAddNewContact.fulfilled, (state, { payload }) => {
       state.status = 'resolved';
-      state.contacts.unshift(payload);
-    }),
-      builder.addCase(fetchAddNewContact.rejected, setError);
+      state.items = [...state.items, payload];
+    });
+    builder.addCase(fetchAddNewContact.rejected, setError);
   },
 });
 

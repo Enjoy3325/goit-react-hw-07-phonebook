@@ -25,6 +25,7 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     const data = {
       id: nanoid(),
       name,
@@ -40,7 +41,7 @@ export const ContactForm = () => {
       setNumber('');
       return alert(`${data.name} is already in contacts`);
     }
-    dispatch(addContacts(data));
+    dispatch(fetchAddNewContact(data));
     reset();
   };
   const reset = () => {
@@ -49,7 +50,7 @@ export const ContactForm = () => {
   };
   return (
     <SectionForm>
-      <Form onSubmit={fetchAddNewContact}>
+      <Form onSubmit={handleSubmit}>
         <LabelForm>
           <TextForm>Name</TextForm>
           <Input
